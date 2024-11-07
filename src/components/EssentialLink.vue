@@ -1,9 +1,9 @@
 <template>
+  <div>
   <q-item
     clickable
     :to="path"
-    @click="test"
-    @click.stop="toggleChildren"
+    @click.stop="handleClick"
   >
   <q-item-section v-if="props.icon" avatar>
     <q-icon :name="props.icon" size="xs"/>
@@ -37,10 +37,13 @@
       :key="child.name"
       :title="child.meta.title"
       :icon="child.icon"
+      :meta="child.meta"
       :path="`${path}/${child.path}`"
     :children="child.children"
+      :addBreadcrumb="addBreadcrumb"
     />
   </q-list>
+  </div>
 </template>
 
 <script setup>
@@ -56,11 +59,6 @@ const props = defineProps({
     required: true
   },
 
-  caption: {
-    type: String,
-    default: ''
-  },
-
   path: {
     type: String,
     default: '#'
@@ -71,9 +69,22 @@ const props = defineProps({
     default: ''
   },
 
+  name: {
+    type: String,
+    default: ''
+  },
+
   children: {
     type: Array,
     default: () => []
+  },
+  addBreadcrumb: { // 新增此 prop
+    type: Function,
+    required: false
+  },
+  meta: { // 新增此 prop
+    type: Object,
+    required: false
   }
 })
 
@@ -84,7 +95,15 @@ const isOpen = ref(false); // 用于跟踪子菜单是否展开
 function toggleChildren() {
   isOpen.value = !isOpen.value; // 切换折叠状态
 }
-function test(){
-  console.log('test')
+function handleClick(e){
+  toggleChildren(); // 切换子菜单
+  if (props.addBreadcrumb) { // 如果有传入的 addBreadcrumb 函数，则调用
+    props.addBreadcrumb({ title: props.title, path: props.path, meta: props.meta, children: props.children, name: props.name }); // 调用 addBreadcrumb
+  }
 }
 </script>
+<style scoped>
+.q-list {
+  padding-left: 20px; /* Optional: for visual indent */
+}
+</style>

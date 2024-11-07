@@ -13,13 +13,15 @@ export const mockRoutes = [
     title: 'Page 3',
     icon: 'school',
     name: 'PageThree',
+    meta: { title: 'Page 3' },
     children: [
       {
         path: 'son2',
         name: 'SonTwo',
         title: 'Son 2',
         component: () => import('pages/SonPage.vue'),
-        meta: { title: 'Son 2' } // 添加 meta 字段
+        meta: { title: 'Son 2' }, // 添加 meta 字段
+        children : []  // 叶子节点返回个空的
       }
     ]
   },

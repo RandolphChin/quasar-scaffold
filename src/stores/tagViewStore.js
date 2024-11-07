@@ -1,56 +1,56 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useBreadcrumbStore = defineStore('breadcrumbStore', () => {
-  const breadcrumbs = ref([]);
-  const tabs = ref([]);
+export const useBreadcrumbStore = defineStore('breadcrumbStore', {
+  state: () => ({
+    breadcrumbs: [], // 面包屑数组
+    tabs: [] // 选项卡数组
+  }),
 
-  function addBreadcrumb(title, path) {
-    breadcrumbs.value.push({ title, path });
-  }
+  getters: {
+    getBreadcrumbs: (state) => state.breadcrumbs,
+    getTabs: (state) => state.tabs,
+  },
 
-  function removeBreadcrumb(index) {
-    breadcrumbs.value.splice(index, 1);
-  }
+  actions: {
+    addBreadcrumb(title, path) {
+      this.breadcrumbs.push({ title, path });
+    },
 
-  function clearBreadcrumbs() {
-    breadcrumbs.value = [];
-  }
+    removeBreadcrumb(index) {
+      this.breadcrumbs.splice(index, 1);
+    },
 
-  function addTab(tab) {
-    tabs.value.push(tab);
-  }
+    clearBreadcrumbs() {
+      this.breadcrumbs = [];
+    },
 
-  function removeTab(index) {
-    tabs.value.splice(index, 1);
-  }
+    addTab(tab) {
+      const existingTab = this.tabs.find(t => t.path === tab.path);
+      if (!existingTab) {
+        this.tabs.push(tab);
+      }
+    },
 
-  function clearTabs() {
-    tabs.value = [];
-  }
+    removeTab(index) {
+      this.tabs.splice(index, 1);
+    },
 
-  function activateTab(index) {
-    const activeTab = tabs.value[index];
-    if (activeTab) {
-      // 可以根据需求跳转到对应的路径
-      // router.push(activeTab.path);
+    clearTabs() {
+      this.tabs = [];
+    },
+
+    activateTab(index) {
+      const activeTab = this.tabs[index];
+      if (activeTab) {
+        // 可以在这里切换到相应路由
+        // router.push(activeTab.path);
+      }
+    },
+
+    refreshTab(index) {
+      console.log(`Refreshing tab at index ${index}`);
+      // 刷新选项卡的逻辑
     }
   }
-
-  function refreshTab(index) {
-    // 刷新逻辑可以根据需求实现
-  }
-
-  return {
-    breadcrumbs,
-    tabs,
-    addBreadcrumb,
-    removeBreadcrumb,
-    clearBreadcrumbs,
-    addTab,
-    removeTab,
-    clearTabs,
-    activateTab,
-    refreshTab
-  };
 });

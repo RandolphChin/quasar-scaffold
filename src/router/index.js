@@ -1,6 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import { useHistoryStore } from 'src/stores/tagViewStore';
 
 /*
  * If not building with SSR mode, you can
@@ -26,5 +27,13 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
 
-  return Router
+  // 在导航守卫中更新历史记录
+  Router.beforeEach((to, from, next) => {
+    // 获取 Pinia store 实例
+    const historyStore = useHistoryStore();
+    historyStore.addRoute(to); // 调用 store 中的添加方法
+    next();
+  });
+
+  return Router ; // 修改此处以返回包含 historyStack 的对象
 })

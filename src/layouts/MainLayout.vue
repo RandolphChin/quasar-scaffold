@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated >
-      <q-toolbar class="bg-grey-1 text-black">
+      <q-toolbar glossy class="bg-grey-1 text-black">
         <q-btn
           flat
           dense
@@ -11,13 +11,16 @@
           @click="toggleLeftDrawer"
         />
         <BreadCrumbs />
-        <q-toolbar-title>
+<!--        <q-toolbar-title>
           Quasar App
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
+        -->
       </q-toolbar>
-      <TagHistory />
+      <q-toolbar class="bg-grey-1 text-black">
+        <TagHistory />
+      </q-toolbar>
     </q-header>
 
     <q-drawer

@@ -4,11 +4,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    title : '首页',
-    meta: { title: '首页' },
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue'), meta: { title: 'IndexPage' }, name: 'IndexPage', children : [] },
+     { path: '', component: () => import('pages/IndexPage.vue'), meta: { title: '首页' }, name: 'Index', children : [] },
       ...mockRoutes.map(route => ({
         path: route.path,
         name: route.name,
@@ -19,7 +17,6 @@ const routes = [
       }))
     ]
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {

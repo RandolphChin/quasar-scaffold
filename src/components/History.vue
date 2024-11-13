@@ -17,16 +17,27 @@
 </template>
 
 <script setup>
-import {ref, computed, nextTick} from 'vue';
+import { computed } from 'vue';
 import { useHistoryStore } from '../stores/tagViewStore';
-import {useRouter, useRoute} from "vue-router";
+import {useRouter} from "vue-router";
+import { mockRoutes } from '../mock'; // 引入 mockRoutes
+
 const router = useRouter();
 defineOptions({
   name: 'TagHistory'
 })
 
-// const route = useRoute();
-const historyRoutes = computed(() => useHistoryStore().historyStack);
+// 获取历史路由
+const historyRoutes = computed(() => {
+  const store = useHistoryStore();
+  const filteredRoutes = store.historyStack.filter(route => {
+    // 只保留不包含子路由的菜单
+    const mockRoute = mockRoutes.find(mockRoute => mockRoute.name === route.name);
+    return !mockRoute?.children || mockRoute.children.length === 0; // 确保没有子路由
+  });
+  // 确保第一个 tab 始终是首页
+  return [{ path: '/', meta: { title: '首页' } }, ...(filteredRoutes.filter(v=> '/' != v.path))];
+});
 
 function navTo (path) {
   router.push({ path: path });
@@ -51,7 +62,6 @@ function closeTab (activeTab) {
       useHistoryStore().removeRoute(item);
     }
   });
-
   // 在关闭标签后，如果有新的路径，则导航
   if (newPath) {
     router.push({ path: newPath });

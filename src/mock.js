@@ -6,7 +6,8 @@ export const mockRoutes = [
     icon: 'home',
     name: 'PageOne',
     component: () => import('pages/Page1.vue'), // 确保你有这个页面组件
-    meta: { title: 'Page 1' }
+    meta: { title: 'Page 1' },
+    children: []  // 必须有 children 属性，默认可以为 []
   },
   {
     path: '/page3',
@@ -31,7 +32,8 @@ export const mockRoutes = [
     icon: 'school',
     name: 'PageTwo',
     component: () => import('pages/Page2.vue'), // 确保你有这个页面组件
-    meta: { title: 'Page 2' }
+    meta: { title: 'Page 2' },
+    children: []
   }
   // 添加更多的mock路由
 ];

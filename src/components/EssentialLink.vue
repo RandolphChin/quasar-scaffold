@@ -18,18 +18,6 @@
       <q-icon :name="isOpen ? 'keyboard_arrow_down' : 'keyboard_arrow_right'" />
     </q-item-section>
   </q-item>
-<!--
-  <q-list v-if="children && children.length" class="q-pl-md">
-    <EssentialLink
-      v-for="child in children"
-      :key="child.name"
-      :title="child.meta.title"
-    :icon="child.icon"
-    :path="`${path}/${child.path}`"
-    :children="child.children"
-    />
-  </q-list>
-  -->
   <!-- 子菜单区域 -->
   <q-list v-if="isOpen" class="q-pl-md"> <!-- 当 isOpen 为 true 时显示子菜单 -->
     <EssentialLink
@@ -47,7 +35,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import { ref} from "vue";
 
 defineOptions({
   name: 'EssentialLink'
@@ -103,7 +91,4 @@ function handleClick(e){
 }
 </script>
 <style scoped>
-.q-list {
-  padding-left: 20px; /* Optional: for visual indent */
-}
 </style>

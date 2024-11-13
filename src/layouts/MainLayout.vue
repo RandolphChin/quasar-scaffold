@@ -56,7 +56,7 @@ import { mockRoutes } from '../mock'; // 引入 mockRoutes
 import { useRouter } from 'vue-router';
 import BreadCrumbs from 'components/BreadCrumbs.vue';
 import TagHistory from "components/History.vue";
-const router = useRouter();
+
 defineOptions({
   name: 'MainLayout'
 })

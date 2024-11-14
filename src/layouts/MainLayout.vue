@@ -18,7 +18,7 @@
         <div>Quasar v{{ $q.version }}</div>
         -->
       </q-toolbar>
-      <q-toolbar class="bg-grey-1 text-black">
+      <q-toolbar glossy class="bg-grey-1 text-black">
         <TagHistory />
       </q-toolbar>
     </q-header>

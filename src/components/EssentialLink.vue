@@ -85,9 +85,11 @@ function toggleChildren() {
 }
 function handleClick(e){
   toggleChildren(); // 切换子菜单
+  /*
   if (props.addBreadcrumb) { // 如果有传入的 addBreadcrumb 函数，则调用
     props.addBreadcrumb({ title: props.title, path: props.path, meta: props.meta, children: props.children, name: props.name }); // 调用 addBreadcrumb
   }
+  */
 }
 </script>
 <style scoped>

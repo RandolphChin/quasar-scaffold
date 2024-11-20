@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    I'm page 2
+    I'm Page Two
   </q-page>
 </template>
 

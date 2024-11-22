@@ -43,6 +43,9 @@ The project relies on the following packages:
 This project is licensed under the MIT License.
 
 ---
+![image](https://github.com/user-attachments/assets/d581e520-fee1-4b7e-a97c-9b405740b028)
+![image](https://github.com/user-attachments/assets/0305d0ce-42db-4e3a-af3e-7ee54b7cb904)
+
 
 ## Quasar Scaffold
 这是一个使用 Quasar v2 UI 框架开发的前端项目。该项目实现了动态菜单和选项卡系统，增强了用户体验。

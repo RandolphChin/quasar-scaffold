@@ -12,6 +12,7 @@
         <q-tab class="q-mx-xs" v-for="(key, index) in historyRoutes"  :key="index" :to="key.path"
                @click="navTo(key.path)"
                @contextmenu.prevent="showContextMenu($event, key.name)"
+               :name="key.name"
             >
           <div class="row items-center no-wrap">
             <span class="q-mr-xs">{{ key.meta.title}}</span>
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import { useHistoryStore } from '../stores/tagViewStore';
 import {useRouter, useRoute} from "vue-router";
 import { mockRoutes } from '../mock'; // 引入 mockRoutes
@@ -131,6 +132,9 @@ function closeRightTabs(tab) {
   }
   menuVisible.value = false; // 关闭菜单
 }
+watchEffect(() =>{
+  activeTab.value = route.name
+})
 </script>
 
 <style scoped>

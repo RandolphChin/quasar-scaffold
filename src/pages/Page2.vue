@@ -31,7 +31,7 @@
 
         <template v-slot:top>
           <q-toolbar>
-            <q-toolbar-title>数据列表</q-toolbar-title>
+            <q-toolbar-title>数据列表Page2</q-toolbar-title>
             <q-btn @click="addItem" label="新增" size="sm" unelevated class="q-mr-sm glossy" color="primary" icon="add" />
           </q-toolbar>
         </template>

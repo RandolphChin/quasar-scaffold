@@ -2,7 +2,7 @@ import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 import { useHistoryStore } from 'src/stores/tagViewStore';
-
+import { useAuthStore } from 'src/stores/authStore'
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -32,7 +32,13 @@ export default route(function (/* { store, ssrContext } */) {
     // 获取 Pinia store 实例
     const historyStore = useHistoryStore();
     historyStore.addRoute(to); // 调用 store 中的添加方法
-    next();
+    const authStore = useAuthStore();
+    // 检查是否需要登录
+    if (to.meta.requiresAuth && !authStore.token) {
+      next('/login'); // 未登录时跳转到登录页
+    } else {
+      next(); // 已登录则继续导航
+    }
   });
 
   return Router ; // 修改此处以返回包含 historyStack 的对象

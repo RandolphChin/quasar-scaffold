@@ -1,3 +1,4 @@
+import { mockRoutes } from './mock'; // 引入 mock.js
 export const fakeBackend = {
   login(credentials) {
     const { username, password } = credentials;
@@ -12,4 +13,17 @@ export const fakeBackend = {
   getUser() {
     return Promise.resolve({ id: 1, username: 'admin', name: 'Administrator' });
   },
+  getDynamicMenu() {
+    const dyMenu = [
+      ...mockRoutes.map(route => ({
+        path: route.path,
+        name: route.name,
+        title: route.title,
+        meta: route.meta,
+        component: route.component,
+        children: route.children ? route.children : [] // 确保有 children 属性
+      }))
+    ]
+    return Promise.resolve(dyMenu);
+  }
 };

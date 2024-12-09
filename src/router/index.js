@@ -31,7 +31,9 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from, next) => {
     // 获取 Pinia store 实例
     const historyStore = useHistoryStore();
-    historyStore.addRoute(to); // 调用 store 中的添加方法
+    if(to.path != '/login'){
+      historyStore.addRoute(to); // 调用 store 中的添加方法
+    }
     const authStore = useAuthStore();
     // 检查是否需要登录
     if (to.meta.requiresAuth && !authStore.token) {

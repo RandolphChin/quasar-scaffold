@@ -17,6 +17,14 @@
 
         <div>Quasar v{{ $q.version }}</div>
         -->
+        <q-space/>
+        <div class="q-gutter-sm row items-center no-wrap">
+          <q-btn round flat>
+            <q-avatar size="26px">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+          </q-btn>
+        </div>
       </q-toolbar>
       <q-toolbar glossy class="bg-grey-1 text-black">
         <TagHistory />

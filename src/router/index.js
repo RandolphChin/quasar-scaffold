@@ -45,7 +45,6 @@ export default route(function (/* { store, ssrContext } */) {
     console.log("setMenuFlag ", authStore.setMenuFlag);
     const menus = await fakeBackend.getDynamicMenu();
     if (!authStore.setMenuFlag && menus) {
-      console.log(menus);
       menus.forEach((menu) => {
         Router.addRoute("Home", menu);
       });
@@ -56,7 +55,6 @@ export default route(function (/* { store, ssrContext } */) {
     } else {
       if (!authStore.setMenuFlag) {
         authStore.setMenu(true);
-        console.log("to: ", to.path);
         next({ ...to, replace: true });
       } else {
         next(); // 已登录则继续导航

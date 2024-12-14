@@ -72,9 +72,9 @@ const handleLogin = async () => {
       router.addRoute("Home", menu);
     });
     router.getRoutes().forEach((w) => {
-      console.log("router...begin");
-      console.log(w.path);
-      console.log("router...end");
+      //console.log("router...begin");
+      //console.log(w.path);
+      //console.log("router...end");
     });
     router.push("/");
   } catch (error) {

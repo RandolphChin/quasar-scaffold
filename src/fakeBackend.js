@@ -25,5 +25,8 @@ export const fakeBackend = {
       }))
     ]
     return Promise.resolve(dyMenu);
-  }
+  },
+  loginOff() {
+    return Promise.resolve({ status: true });
+  },
 };
